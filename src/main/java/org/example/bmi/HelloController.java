@@ -17,14 +17,16 @@ public class HelloController {
 
     @FXML
     private Label bmiStatusLabel;
-
+    // Method triggered when the user presses the 'Calculate BMI' button
     @FXML
     protected void onCalculateBMI() {
         try {
+            // Parse the user input for weight and height as double values
             double weight = Double.parseDouble(weightInput.getText());
             double height = Double.parseDouble(heightInput.getText());
-
+            // Calculate BMI using the formula: weight / (height^2)
             double bmi = weight / (height * height);
+            // Display the BMI value formatted to 2 decimal places
             bmiResultLabel.setText(String.format("BMI: %.2f", bmi));
 
             // Determine the BMI status
@@ -34,7 +36,7 @@ public class HelloController {
             bmiResultLabel.setText("Invalid input. Please enter numbers.");
         }
     }
-
+    // Helper method to determine the BMI status based on the calculated BMI value
     private String getBMIStatus(double bmi) {
         if (bmi < 18.5) {
             return "Underweight";
@@ -46,7 +48,7 @@ public class HelloController {
             return "Obese";
         }
     }
-
+    // Method triggered when the user presses the 'Clear' button to reset the fields
     @FXML
     protected void onClearFields() {
         weightInput.clear();
